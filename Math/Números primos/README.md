@@ -15,13 +15,15 @@ Basicamente que para um número inteiro ser primo é aquele que tem unicamente d
 - o número 1;
 - ele mesmo.
 
-Sabendo disso fica fácil iniciarmos o algoritmo, primeiramente escrevemos as regras explícitas, não precisamos testar se o número é divisível por 1, mas sim precisamos testar se o número **tem algum divisor entre ele e 1**.
+Sabendo disso ficou fácil iniciarmos o algoritmo, primeiramente escrevemos as regras explícitas, não precisamos testar se o número é divisível por 1, mas sim precisamos testar se o número **tem algum divisor entre ele e 1**.
 
 Para fazer iremos utilizar a mesma lógica da função `multiplicar/dividir` do [Curso de Matemática para Programadores](https://github.com/Webschool-io/matematica-para-programadores).
 
-Nesse caso precisamos pegar o número e ir testando se ele divide pelos números anteriores a ele indo até 2, para escrever isso como algoritmo eu preciso entender antes o conceito de *loop*.
+Nesse caso precisamos pegar o número e ir testando se ele divide pelos números anteriores a ele indo até 2, **caso ele não encontre nenhum número que seja seu divisor** então ele será primo.
 
-O *loop* na programação é uma função que irá executar um número pré-definido d vezes, para exemplificar isso utilizarei a função `for` que se encontra em quase todas as linguagens, porém utilizarei JavaScript.
+Para escrever isso como algoritmo eu preciso entender antes o conceito de *loop*.
+
+O *loop* na programação é uma função que irá executar um número pré-definido de vezes, para exemplificar isso utilizarei a função `for` que se encontra em quase todas as linguagens, porém utilizarei JavaScript.
 
 Antes de criamos o algoritmo precisamos entender como a divisão funciona por aqui.
 
@@ -41,7 +43,7 @@ Bom apenas dividir nossos números não nos resolve o problema, precisamos testa
 
 **Então qual será a lógica?**
 
-Vamos pensar comigo:
+Pense comigo:
 
 > Todo número dividido por um divisor irá **sempre** resultar em um número inteiro!
 
