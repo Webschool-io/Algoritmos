@@ -12,8 +12,8 @@ Mas o que isso significa?
 
 Basicamente que para um número inteiro ser primo é aquele que tem unicamente dois divisores naturais distintos: 
 
-- o número 1
-- ele mesmo `p`
+- o número 1;
+- ele mesmo.
 
 Sabendo disso fica fácil iniciarmos o algoritmo, primeiramente escrevemos as regras explícitas, não precisamos testar se o número é divisível por 1, mas sim precisamos testar se o número **tem algum divisor entre ele e 1**.
 
@@ -45,7 +45,9 @@ Vamos pensar comigo:
 
 > Todo número dividido por um divisor irá **sempre** resultar em um número inteiro!
 
-Ou seja, se você dividir um número por outro **que não seja seu divisor**, `3/2`, o resultado **NUNCA** será inteiro, ou seja, nunca retornará 0.
+Ou seja, se você dividir um número por outro **que não seja seu divisor**, por exemplo `3/2`, o resultado **NUNCA** será inteiro, sendo assim o resto da divisão **NUNCA** resultará em 0.
+
+Para entender melhor o algoritmo de divisão [leia mais aqui]()
 
 Na programação podemos testar isso de 2 formas:
 
@@ -62,13 +64,13 @@ Ainda bem que o JavaScript nos provê a função `Number.isInteger()` que irá f
 let primo = false;
 const numero = 4;
 const divisor = 2;
-const resto = numero/divisor;
+const resultado = numero/divisor;
 
-if(Number.isInteger(resto)) {
+if(Number.isInteger(resultado)) {
   primo = true;
 }
 
-console.log('O resto da divisão entre '+numero+' e '+divisor+' é inteiro?', primo);
+console.log('O resultado da divisão entre '+numero+' e '+divisor+' é inteiro?', primo);
 ```
 
 Você pode executar esse código diretamente do seu navegador, entrando no Console (favor pesquisar como fazer em seu Navegador).
@@ -79,7 +81,7 @@ Para facilitar nossa vida futura irei encapsular essa lógica para poder sempre 
 let primo = false;
 const numero = 4;
 const divisor = 3;
-const resto = numero/divisor;
+const resultado = numero/divisor;
 
 const isInteger = (numero) => {
   if(Number.isInteger(numero)) {
@@ -89,7 +91,7 @@ const isInteger = (numero) => {
   return inteiro;
 }
 
-isInteger(resto);
+isInteger(resultado);
 ```
 
 Bom você deve ter percebido que utilizei `let` e `const` para definir os valores, a diferença básica entre elas é que usando `const` o valor definido não pode ser mais modificado e com `let` pode.
@@ -98,13 +100,13 @@ Depois crio a função com `const isInteger = (numero) => { ... }`, onde a defin
 
 Claramente você percebe que a definição dos parâmetros da função são feitos em `(numero)`, antes da `=>` que significa é a definição da função propriamente dita.
 
-E depois apenas executo a função `isInteger(resto)` passando a constante do `resto`.
+E depois apenas executo a função `isInteger(resultado)` passando a constante do `resultado`.
 
 **Agora com esse conhecimento o que você acha que devemos fazer?**
 
-Iniciamos adicionando nossa função para usá-la para testar o resto das diviões do nosso número a ser testado, isso por quê?
+Iniciamos adicionando nossa função para usá-la para testar o resultado das diviões do nosso número a ser testado, isso por quê?
 
-Pois para um número ser primo nós precisaremos testar o resto da divisão dele por todos seus números anteriores acima de 2.
+Pois para um número ser primo nós precisaremos testar o resultado da divisão dele por todos seus números anteriores acima de 2.
 
 ```js
 const isInteger = (numero) => {
@@ -123,12 +125,12 @@ const numero = 5;
 for(let contador = 2; contador < numero; contador++) {
   // Preciso testar se o número tem algum divisor entre ele e 1
   // Se não achar nenhum divisor ele será PRIMO
-  let resto = numero/contador;
-  if(isInteger(resto) === false) {
+  let resultado = numero/contador;
+  if(isInteger(resultado) === false) {
     primo = true;
   }
   console.log('Contador: ', contador);
-  console.log('Resto: ', resto);
+  console.log('Resultado: ', resultado);
   // Como definimos o estado inicial em FALSE
   // Só mudaremos ele qse for PRIMO, porém usado a mesma variável
   console.log('O número '+numero+' é primo?', primo);
@@ -141,7 +143,6 @@ Percebeu que no teste do for eu não passo uma valor abritrário, mas sim testo 
 Como iremos testar algo sempre devemos partir do pressuposto que é falso e com nossa lógica iremos testar para mudar esse estado.
 
 No código acim estamos simplesmente retornando falso se o número for divisível por outro menor que ele e maior que 2.
-
 
 Caso você não tenha entendido essa linha:
 
@@ -170,5 +171,61 @@ Então você percebeu que aquele `contador++` é o tal do incrementador né?
 Ele simplesmente adiciona 1 ao valor do `contador` cada vez que passa.
 
 ## Testando o resto da divisão se é 0
+
+Podemos resolver o mesmo problema com uma abordagem diferente, em vez de testar o resultado da divisão iremos testar se o resto dessa divisão é igual a 0.
+
+Vamos reusar o algoritmo passado.
+
+```js
+// Definimos o estado atual
+let primo = false;
+const numero = 5;
+// Não preciso testar se é divisível por 1 nem 2
+for(let contador = 2; contador < numero; contador++) {
+  // Preciso testar se o número tem algum divisor entre ele e 1
+  // Se não achar nenhum divisor ele será PRIMO
+  let resultado = numero/contador;
+  if(isInteger(resultado) === false) {
+    primo = true;
+  }
+  console.log('Contador: ', contador);
+  console.log('Resultado: ', resultado);
+  // Como definimos o estado inicial em FALSE
+  // Só mudaremos ele qse for PRIMO, porém usado a mesma variável
+  console.log('O número '+numero+' é primo?', primo);
+  return primo;
+}
+```
+
+Agora iremos inverter a lógica fazendo com que o estado inicial seja verdadeiro e quando ele encontrar um divisor do número irá mudar para falso.
+
+Para testarmos o valor do resultado de uma operação utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**.
+
+```js
+// Definimos o estado atual
+let primo = true;
+const numero = 7;
+// Não preciso testar se é divisível por 1 nem 2
+for(let contador = 2; contador < numero; contador++) {
+  // Preciso testar se o número tem algum divisor entre ele e 1
+  // Se não achar nenhum divisor ele será PRIMO
+  let resto = numero % contador;
+  if(resto  === 0) {
+    primo = false;
+  }
+  // Como definimos o estado inicial em FALSE
+  // Só mudaremos ele qse for PRIMO, porém usado a mesma variável
+  console.log('O número '+numero+' é primo?', primo);
+  return primo;
+}
+```
+
+
+
+
+
+
+
+
 
 
