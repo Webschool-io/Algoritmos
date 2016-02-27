@@ -138,9 +138,6 @@ for(let contador = 2; contador < numero; contador++) {
 
 Percebeu que no teste do for eu não passo uma valor abritrário, mas sim testo se o `contador` é menor que o `numero`(5), quando o `contador` tiver o valor de 5 ele irá sair.
 
-Para exemplificar isso colocarei um `console.log` para visualizarmos o passo-a-passo:
-
-
 Como iremos testar algo sempre devemos partir do pressuposto que é falso e com nossa lógica iremos testar para mudar esse estado.
 
 No código acim estamos simplesmente retornando falso se o número for divisível por outro menor que ele e maior que 2.
