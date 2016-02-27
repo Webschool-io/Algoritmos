@@ -89,9 +89,6 @@ console.log('O resultado da divisão entre '+numero+' e '+divisor+' é inteiro?'
 
 Você pode executar esse código diretamente do seu navegador, entrando no Console (favor pesquisar como fazer em seu Navegador).
 
-
-
-
 Perceba que no `if` estou chamando a função `Number.isInteger` passando como parâmetro o resultado da divisão, essa mesma função irá retornar verdadeiro(`true`) caso o número seja inteiro ou falso(`false`) caso não.
 
 Para facilitar nossa vida futura irei encapsular essa lógica para poder sempre reusar, basta apenas criar uma função para tal:
@@ -361,7 +358,10 @@ false
 
 E pronto!
 
+## Desafio
+
 **Agora o seu desafio é inverter a lógica!**
 
 Em vez de iniciar do 3 você deverá iniciar do valor passado a ser testado, ou seja, em vez de incrementar você irá decrementar.
 
+**E também deverá criar um algoritmo para retornar `true` ou `false` caso um número seja Inteiro, utilizando-o em vez da função parseInt().**
