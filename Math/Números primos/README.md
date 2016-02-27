@@ -58,7 +58,7 @@ Na programação podemos testar isso de 2 formas:
 
 Vamos iniciar nosso algoritmo
 
-## Testando o resultado se é inteiro
+## Testando se o resultado da divisão é inteiro
 
 Ainda bem que o JavaScript nos provê a função `Number.isInteger()` que irá fazer teste automaticamente:
 
@@ -206,7 +206,7 @@ const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
 ```
 
-## Testando o resto da divisão se é 0
+## Testando o resto da divisão se é igual a0
 
 Podemos resolver o mesmo problema com uma abordagem diferente, em vez de testar o resultado da divisão iremos testar se o resto dessa divisão é igual a 0.
 
@@ -240,14 +240,14 @@ Como iremos trabalhar com o valor do **resto** da divisão precisamos inicialmen
 Para exemplificar melhor acompanhe aqui comigo:
 
 ```
-4 / 2 = 0
+4 / 2 = 2
 ```
 
-A divisão de 4 por 2 resulta em 0 e tem 0 como resto também, pois:
+A divisão de 4 por 2 resulta em 2 e tem 0 como resto, pois:
 
 ```
  4 |2
--2  2
+-4  2
  0
 ```
 
