@@ -262,7 +262,7 @@ Vamos ver com um número ímpar:
   ... é uma dízima periódica
 ```
 
-Logo você percebe que se o número a ser dividido(4), o dividendo, pelo divisor(3) não encontrar um resultado inteiro você deverá adicionar uma casa decimal, fazendo isso você deve multiplicar o **resto** por 10 e continuar a divisão normalmente.
+Logo você percebe que se o número a ser dividido(4), o dividendo, pelo divisor(3) não encontrar um resultado inteiro você deverá adicionar uma casa decimal (colocando a vírgula), fazendo isso você deve multiplicar o **resto** por 10, pois adicionou a vírgula no resultado, e continuar a divisão normalmente.
 
 Ótimo então já sabemos dividir (hehehe) agora vamos criar um algoritmo para verificar o resto de uma divisão:
 
