@@ -96,17 +96,17 @@ const isInteger = (numero) => {
 isInteger(resultado);
 ```
 
-Bom você deve ter percebido que utilizei `let` e `const` para definir os valores, a diferença básica entre elas é que usando `const` o valor definido não pode ser mais modificado e com `let` pode.
+Bom, você deve ter percebido que utilizei `let` e `const` para definir os valores, a diferença básica entre elas é que usando `const` o valor definido não pode ser mais modificado e com `let` pode.
 
 Depois crio a função com `const isInteger = (numero) => { ... }`, onde a definição da função é `(numero) => { ... }`.
 
-Claramente você percebe que a definição dos parâmetros da função são feitos em `(numero)`, antes da `=>` que significa é a definição da função propriamente dita.
+Claramente você percebe que a definição dos parâmetros da função são feitos em `(numero)`, antes da `=>` que é a definição da função propriamente dita.
 
-E depois apenas executo a função `isInteger(resultado)` passando a constante do `resultado`.
+Depois executo a função `isInteger(resultado)` passando a constante do `resultado` da divisão.
 
 **Agora com esse conhecimento o que você acha que devemos fazer?**
 
-Iniciamos adicionando nossa função para usá-la para testar o resultado das diviões do nosso número a ser testado, isso por quê?
+Iniciamos adicionando nossa função para usá-la para testar o resultado das divisões do nosso número a ser testado, isso por quê?
 
 Pois para um número ser primo nós precisaremos testar o resultado da divisão dele por todos seus números anteriores acima de 2.
 
@@ -176,7 +176,7 @@ Ele simplesmente adiciona 1 ao valor do `contador` cada vez que passa.
 
 Podemos resolver o mesmo problema com uma abordagem diferente, em vez de testar o resultado da divisão iremos testar se o resto dessa divisão é igual a 0.
 
-Vamos reusar o algoritmo passado.
+Vamos reusar o algoritmo passado:
 
 ```js
 // Definimos o estado atual
@@ -198,6 +198,7 @@ for(let contador = 2; contador < numero; contador++) {
   return primo;
 }
 ```
+
 
 Agora iremos inverter a lógica fazendo com que o estado inicial seja verdadeiro e quando ele encontrar um divisor do número irá mudar para falso.
 
