@@ -9,19 +9,21 @@ const isInteger = (numero) => {
   return inteiro;
 }
 
-// Definimos o estado atual
-let primo = false;
-const numero = 5;
-// Não preciso testar se é divisível por 1 nem 2
-for(let contador = 2; contador < numero; contador++) {
-  // Preciso testar se o número tem algum divisor entre ele e 1
-  // Se não achar nenhum divisor ele será PRIMO
-  let resultado = numero/contador;
-  if(isInteger(resultado) === false) {
-    primo = true;
+const isPrime = (numero) => {
+  if(isInteger(numero/2)) {
+    return false;
   }
-  // Como definimos o estado inicial em FALSE
-  // Só mudaremos ele qse for PRIMO, porém usado a mesma variável
-  console.log('O número '+numero+' é primo?', primo);
-  return primo;
+  for(let contador = 3; contador < numero; contador++) {
+    // Preciso testar se o número tem algum divisor entre ele e 1
+    // Se não achar nenhum divisor ele será PRIMO
+    let resultado = numero/contador;
+    if(isInteger(resultado)) {
+      return false;
+    }
+  }
+  return true;
 }
+const numero = 273;
+const primo = isPrime(numero);
+
+console.log('O número '+numero+' é primo?', primo);

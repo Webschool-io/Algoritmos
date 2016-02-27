@@ -134,7 +134,7 @@ for(let contador = 2; contador < numero; contador++) {
   console.log('Contador: ', contador);
   console.log('Resultado: ', resultado);
   // Como definimos o estado inicial em FALSE
-  // Só mudaremos ele qse for PRIMO, porém usado a mesma variável
+  // Só mudaremos ele se for PRIMO, porém usado a mesma variável
   console.log('O número '+numero+' é primo?', primo);
   return primo
 }
@@ -154,9 +154,9 @@ for(let contador = 2; contador < 4; contador++)
 
 A função `for` recebe 3 parâmetros:
 
-- instanciação do contador;
-- teste do contador;
-- incrementação do contador.
+- atribuição do valor inicial do contador;
+- teste para saída do *looping*;
+- incrementação(adição de 1) do contador.
 
 Precisamos de um contador para poder saber quantos *loopings* ele fez e para poder sair dele, pois caso você coloque um teste que nunca dê falso o `for` *NUNCA* sairá do *looping*.
 
@@ -193,34 +193,88 @@ for(let contador = 2; contador < numero; contador++) {
   console.log('Contador: ', contador);
   console.log('Resultado: ', resultado);
   // Como definimos o estado inicial em FALSE
-  // Só mudaremos ele qse for PRIMO, porém usado a mesma variável
+  // Só mudaremos ele se for PRIMO, porém usado a mesma variável
   console.log('O número '+numero+' é primo?', primo);
   return primo;
 }
 ```
 
+Como iremos trabalhar com o valor do **resto** da divisão precisamos inicialmente conhecer esse conceito.
 
-Agora iremos inverter a lógica fazendo com que o estado inicial seja verdadeiro e quando ele encontrar um divisor do número irá mudar para falso.
+**O que é esse resto?**
 
-Para testarmos o valor do resultado de uma operação utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**.
+Para exemplificar melhor acompanhe aqui comigo:
+
+```
+4 / 2 = 0
+```
+
+A divisão de 4 por 2 resulta em 0 e tem 0 como resto também, pois:
+
+```
+ 4 |2
+-2  2
+ 0
+```
+
+Vamos ver com um número ímpar:
+
+```
+ 4 |3
+-3  1.3
+ 10
+ -9
+  1
+  ... é uma dízima periódica
+```
+
+Logo você percebe que se o número a ser dividido(4), o dividendo, pelo divisor(3) não encontrar um resultado inteiro você deverá adicionar uma casa decimal, fazendo isso você deve multiplicar o **resto** por 10 e continuar a divisão normalmente.
+
+Ótimo então já sabemos dividir (hehehe) agora vamos criar um algoritmo para verificar o resto de uma divisão:
 
 ```js
-// Definimos o estado atual
-let primo = true;
-const numero = 7;
-// Não preciso testar se é divisível por 1 nem 2
-for(let contador = 2; contador < numero; contador++) {
-  // Preciso testar se o número tem algum divisor entre ele e 1
-  // Se não achar nenhum divisor ele será PRIMO
-  let resto = numero % contador;
-  if(resto  === 0) {
-    primo = false;
-  }
-  // Como definimos o estado inicial em FALSE
-  // Só mudaremos ele qse for PRIMO, porém usado a mesma variável
-  console.log('O número '+numero+' é primo?', primo);
-  return primo;
+const divisor = 4;
+const dividendo = 3
+
+const calculateRest = (divisor, dividendo) => {
+  const resultado = divisor/dividendo;
+  console.log('resultado: ', resultado);
+  return divisor - (dividendo * parseInt(resultado));
 }
+```
+
+Porém como as linguagens de programação vieram para facilitar nossa vida nós não precisaremos utilizar a função acima para retornar o resto, utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**.
+
+```js
+/const calculateRest = (divisor, dividendo) => {
+  const resultado = divisor/dividendo;
+  console.log('resultado: ', resultado);
+  return (divisor - (dividendo * parseInt(resultado)));
+}
+
+const isInteger = (numero) => {
+  let inteiro = false;
+  if(Number.isInteger(numero)) {
+    inteiro = true;
+  }
+  console.log('O número '+numero+' é inteiro?', inteiro);
+  return inteiro;
+}
+
+const isPrime = (numero) => {
+  if(isInteger(numero/2)) {
+    return false;
+  }
+  for(let contador = 3; contador < numero; contador++) {
+    if(!calculateRest(numero, contador)) {
+      return false;
+    }
+  }
+  return true;
+}
+const numero = 12;
+const primo = isPrime(numero);
+console.log('O número '+numero+' é primo?', primo);
 ```
 
 
