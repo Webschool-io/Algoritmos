@@ -20,17 +20,17 @@ const isPrime = (numero) => {
     return false;
   }
   for(let contador = numero-1; contador <= numero; contador--) {
+    if(contador === 2) {
+      break;
+    }
     console.log(numero+'/'+contador, numero/contador);
     if(!calculateRest(numero, contador)) {
       return false;
     }
-    if(contador === 2) {
-      break;
-    }
   }
   return true;
 }
-const numero = 10;
+const numero = 223;
 const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
 

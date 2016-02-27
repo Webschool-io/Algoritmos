@@ -289,7 +289,7 @@ const calculateRest = (divisor, dividendo) => {
 }
 ```
 
-Porém como as linguagens de programação vieram para facilitar nossa vida nós não precisaremos utilizar a função acima para retornar o resto, utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**.
+Porém como as linguagens de programação vieram para facilitar nossa vida nós não precisaremos utilizar a função acima para retornar o resto, utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**, [no JavaScript usamos o operador %]().
 
 ```js
 const calculateRest = (dividendo, divisor) => {
