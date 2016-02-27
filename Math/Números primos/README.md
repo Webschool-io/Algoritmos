@@ -346,3 +346,7 @@ false
 
 E pronto!
 
+**Agora o seu desafio é inverter a lógica!**
+
+Em vez de iniciar do 3 você deverá iniciar do valor passado a ser testado, ou seja, em vez de incrementar você irá decrementar.
+
