@@ -246,7 +246,7 @@ const calculateRest = (divisor, dividendo) => {
 Porém como as linguagens de programação vieram para facilitar nossa vida nós não precisaremos utilizar a função acima para retornar o resto, utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**.
 
 ```js
-/const calculateRest = (divisor, dividendo) => {
+const calculateRest = (divisor, dividendo) => {
   const resultado = divisor/dividendo;
   console.log('resultado: ', resultado);
   return (divisor - (dividendo * parseInt(resultado)));
@@ -277,7 +277,7 @@ const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
 ```
 
-
+Dessa vez nós reusamos as funções passadas `isInteger` e criamos a função `calculateRest` que irá retornar o valor do resto da divisão para testarmos se o resto é diferente de 0, **pois se o resto for 0 o `numero` encontrou um divisor**.
 
 
 
