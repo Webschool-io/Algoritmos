@@ -60,7 +60,19 @@ Vamos iniciar nosso algoritmo
 
 ## Testando se o resultado da divisão é inteiro
 
-Ainda bem que o JavaScript nos provê a função `Number.isInteger()` que irá fazer teste automaticamente:
+Nesse caso precisamos verificar se o resultado da divisão será um inteiro, pois se ele for nós encontramos um divisor.
+
+**Mas como assim?**
+
+Simples, divida `4` por `2`.
+
+O resultado é `2`, ou seja, um inteiro.
+
+Agora divida `4` por `3`.
+
+O resultado é `1.33333`, ou seja, não inteiro.
+
+Para facilitar nossa vida o JavaScript nos provê a função `Number.isInteger()` que irá fazer teste automaticamente:
 
 ```js
 let primo = false;
@@ -76,6 +88,9 @@ console.log('O resultado da divisão entre '+numero+' e '+divisor+' é inteiro?'
 ```
 
 Você pode executar esse código diretamente do seu navegador, entrando no Console (favor pesquisar como fazer em seu Navegador).
+
+
+
 
 Perceba que no `if` estou chamando a função `Number.isInteger` passando como parâmetro o resultado da divisão, essa mesma função irá retornar verdadeiro(`true`) caso o número seja inteiro ou falso(`false`) caso não.
 
@@ -125,9 +140,9 @@ const isInteger = (numero) => {
 // Definimos o estado atual
 let primo = false;
 const numero = 5;
-// Não preciso testar se é divisível por 1 nem 2
+// Não preciso testar se é divisível por 1
 for(let contador = 2; contador < numero; contador++) {
-  // Preciso testar se o número tem algum divisor entre ele e 1
+  // Preciso testar se o número tem algum divisor entre ele e 2
   // Se não achar nenhum divisor ele será PRIMO
   let resultado = numero/contador;
   if(isInteger(resultado) === false) {
