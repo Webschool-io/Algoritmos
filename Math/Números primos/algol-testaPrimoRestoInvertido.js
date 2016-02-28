@@ -2,7 +2,7 @@
 
 const calculateRest = (dividendo, divisor) => {
   const resultado = dividendo/divisor;
-  console.log('resultado: ', resultado);
+  console.log(dividendo+'/'+divisor, resultado);
   return (dividendo - (divisor * parseInt(resultado)));
 }
 

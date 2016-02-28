@@ -423,41 +423,59 @@ Depois bastou modificar o teste de saída do `for` para `contador < raiz`, poupa
 Apenas observe nosso algoritmo antes:
 
 ```
-λ ➜  Números primos git:(master) ✗ node algol-testaPrimoResto
-O número 11.5 é inteiro? false
-resultado:  7.666666666666667
-resultado:  5.75
-resultado:  4.6
-resultado:  3.8333333333333335
-resultado:  3.2857142857142856
-resultado:  2.875
-resultado:  2.5555555555555554
-resultado:  2.3
-resultado:  2.090909090909091
-resultado:  1.9166666666666667
-resultado:  1.7692307692307692
-resultado:  1.6428571428571428
-resultado:  1.5333333333333334
-resultado:  1.4375
-resultado:  1.3529411764705883
-resultado:  1.2777777777777777
-resultado:  1.2105263157894737
-resultado:  1.15
-resultado:  1.0952380952380953
-resultado:  1.0454545454545454
-O número 23 é primo? true
+37 / 2 =  18.5
+O número 18.5 é inteiro? false
+37/3 12.333333333333334
+37/4 9.25
+37/5 7.4
+37/6 6.166666666666667
+37/7 5.285714285714286
+37/8 4.625
+37/9 4.111111111111111
+37/10 3.7
+37/11 3.3636363636363638
+37/12 3.0833333333333335
+37/13 2.8461538461538463
+37/14 2.642857142857143
+37/15 2.466666666666667
+37/16 2.3125
+37/17 2.176470588235294
+37/18 2.0555555555555554
+37/19 1.9473684210526316
+37/20 1.85
+37/21 1.7619047619047619
+37/22 1.6818181818181819
+37/23 1.608695652173913
+37/24 1.5416666666666667
+37/25 1.48
+37/26 1.4230769230769231
+37/27 1.3703703703703705
+37/28 1.3214285714285714
+37/29 1.2758620689655173
+37/30 1.2333333333333334
+37/31 1.1935483870967742
+37/32 1.15625
+37/33 1.121212121212121
+37/34 1.088235294117647
+37/35 1.0571428571428572
+37/36 1.0277777777777777
+O número 37 é primo? true
 ```
 
 E agora com o algoritmo otimizado:
 
 ```
-λ ➜  Números primos git:(master) ✗ node algol-testaPrimoRestoRaiz.js
-O número 11.5 é inteiro? false
-resultado:  7.666666666666667
-resultado:  5.75
-O número 23 é primo? true
-
+37 / 2 =  18.5
+O número 18.5 é inteiro? false
+37/3 12.333333333333334
+37/4 9.25
+37/5 7.4
+37/6 6.166666666666667
+O número 37 é primo? true
 ```
+
+**Saímos de 37 operações para apenas 7!** E claro que esse número pode aumentar **MUITO!!!**
+
 
 ## Teoremas sobre números primos
 
