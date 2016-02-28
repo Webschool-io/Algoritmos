@@ -365,3 +365,118 @@ E pronto!
 Em vez de iniciar do 3 você deverá iniciar do valor passado a ser testado, ou seja, em vez de incrementar você irá decrementar.
 
 **E também deverá criar um algoritmo para retornar `true` ou `false` caso um número seja Inteiro, utilizando-o em vez da função parseInt().**
+
+## Dividindo por √¯n
+
+Caso não esteja familiarizado com o algoritmo da radiciação [leia mais nesse meu conteúdo](https://github.com/Webschool-io/matematica-para-programadores#radiciação-1), nele eu deduzi uma fórmula "simples" para números inteiros positivos:
+
+```
+√¯y = x
+
+y/x = x
+```
+
+Ela pode ser provada da seguinte forma:
+
+```
+√¯49 = x
+49 = x ^ 2
+49 = x . x
+49/x = x
+49/7 = 7
+```
+
+Nesse caso sabemos que qualquer número divido pela sua raíz quadrada será a própria raíz, ou seja, qualquer número pode ser escrito como a multiplicação de dois números.
+
+Sabendo disso podemos inferir que um número `x` pode ser escrito como uma multiplicação de 2 números inteiros e positivos menores que ele, sendo a multiplicação da sua raíz por ela mesma o maior valor.
+
+Agora podemos melhorar nosso algoritmo não precisando dividir por todos seus antecessores, bastando iniciar da raíz do número até 2.
+
+Veja o que mudaremos dentro da função `isPrime`:
+
+```js
+const isPrime = (numero) => {
+
+  if(isInteger(numero/2)) {
+    return false;
+  }
+
+  const raiz = Math.sqrt(numero);
+
+  if(raiz > 2) {
+    for(let contador = 3; contador < raiz; contador++) {
+      if(!calculateRest(numero, contador)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+```
+
+Logo após o teste pra verificar se é par em `if(isInteger(numero/2))` adicionei o cálculo da raíz quarada utilizando a função `Math.sqrt(numero)`.
+
+Para na sequência testar se a `raiz` é maior que `2` para garantir que não entrarei nesse `if` caso o `numero` seja menor que 4, que é par.
+
+Depois bastou modificar o teste de saída do `for` para `contador < raiz`, poupando-nos **muito processamento**.
+
+Apenas observe nosso algoritmo antes:
+
+```
+λ ➜  Números primos git:(master) ✗ node algol-testaPrimoResto
+O número 11.5 é inteiro? false
+resultado:  7.666666666666667
+resultado:  5.75
+resultado:  4.6
+resultado:  3.8333333333333335
+resultado:  3.2857142857142856
+resultado:  2.875
+resultado:  2.5555555555555554
+resultado:  2.3
+resultado:  2.090909090909091
+resultado:  1.9166666666666667
+resultado:  1.7692307692307692
+resultado:  1.6428571428571428
+resultado:  1.5333333333333334
+resultado:  1.4375
+resultado:  1.3529411764705883
+resultado:  1.2777777777777777
+resultado:  1.2105263157894737
+resultado:  1.15
+resultado:  1.0952380952380953
+resultado:  1.0454545454545454
+O número 23 é primo? true
+```
+
+E agora com o algoritmo otimizado:
+
+```
+λ ➜  Números primos git:(master) ✗ node algol-testaPrimoRestoRaiz.js
+O número 11.5 é inteiro? false
+resultado:  7.666666666666667
+resultado:  5.75
+O número 23 é primo? true
+
+```
+
+## Teoremas sobre números primos
+
+### Teorema 1 - Teorema Fundamental da Aritmética
+
+Todo número natural maior do que 1 ou é primo ou se escreve de modo único (exceptuando a ordem dos fatores) como um produto de números primos.
+
+Tomemos a segunda forma do Princípio de Indução.
+
+Seja n = 2, sabemos que ele é primo. Suponha o resultado válido para todo número natural menor que `n` e vamos provar que vale para n. Observe que que se `n` é primo, nada temos a provar. Sendo `n` composto, existem números naturais `x` e `y` tais que `n = xy` com `1 < x < n e 1 < y < n`.
+
+```
+x e y tais que n = xy com 1 < x < n e 1 < y < n.
+```
+
+Ou seja o número `n` é igual à multiplicação de `x` e `y`, sendo `x` e `y` maior que 1 e menor que `n`.
+
+### Teorema 2
+
+Dado um número natural n > 1, existem primos a_1, a_2, a_3, ..., a_k, e naturais u_1, u_2, u_3 ... u_w, univocamente determinados, tais que n = (a_1)^{u_1} . (a_2)^{u_2} . (a_3)^{u_3} .  ...  . (a_k)^{u_k}.
+
+

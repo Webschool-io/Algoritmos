@@ -30,7 +30,7 @@ const isPrime = (numero) => {
   }
   return true;
 }
-const numero = 223;
+const numero = 25;
 const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
 
