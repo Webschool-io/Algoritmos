@@ -21,19 +21,50 @@ Sabendo disso o que você consegue deduzir sobre o número primo?
 
 **Se ele só é divisível por 1 e por ele mesmo, logo ele não tem nenhum outro divisor inteiro.**
 
-Vamos a um exemplo:
+Vamos então ver os números primos de 1 até 7:
 
 ```
 1 / 1 = 1
+
 2 / 1 = 2
+2 / 2 = 1
+
 3 / 1 = 3
+3 / 2 = 1.5
+3 / 3 = 1
+
 4 / 1 = 4
+4 / 2 = 2
+4 / 3 = 1.333
+4 / 4 = 1
+
 5 / 1 = 5
+5 / 2 = 2.5
+5 / 3 = 1.666
+5 / 4 = 1.25
+5 / 5 = 1
+
 6 / 1 = 6
+6 / 2 = 3
+6 / 3 = 2
+6 / 4 = 1.5
+6 / 5 = 1.2
+6 / 6 = 1
+
 7 / 1 = 7
+7 / 2 = 3.5
+7 / 3 = 2.333
+7 / 4 = 1.75
+7 / 5 = 1.4
+7 / 6 = 1.166
+7 / 7 = 1
 ```
 
-Já conseguiu entender o que teremos que testar para verificar se um número é inteiro???
+Baseando-se nos dados acima, quais são os números primos de 1 a 7?
+
+> 2,3,5,7
+
+**Entendeu o que teremos que testar para verificar se um número é primo???**
 
 ![](https://media.giphy.com/media/xf20D8HzvTQzu/giphy.gif)
 
