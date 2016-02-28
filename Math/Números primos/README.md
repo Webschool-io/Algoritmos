@@ -499,24 +499,4 @@ O número 37 é primo? true
 **Saímos de 37 operações para apenas 7!** E claro que esse número pode aumentar **MUITO!!!**
 
 
-## Teoremas sobre números primos
-
-### Teorema 1 - Teorema Fundamental da Aritmética
-
-Todo número natural maior do que 1 ou é primo ou se escreve de modo único (exceptuando a ordem dos fatores) como um produto de números primos.
-
-Tomemos a segunda forma do Princípio de Indução.
-
-Seja n = 2, sabemos que ele é primo. Suponha o resultado válido para todo número natural menor que `n` e vamos provar que vale para n. Observe que que se `n` é primo, nada temos a provar. Sendo `n` composto, existem números naturais `x` e `y` tais que `n = xy` com `1 < x < n e 1 < y < n`.
-
-```
-x e y tais que n = xy com 1 < x < n e 1 < y < n.
-```
-
-Ou seja o número `n` é igual à multiplicação de `x` e `y`, sendo `x` e `y` maior que 1 e menor que `n`.
-
-### Teorema 2
-
-Dado um número natural n > 1, existem primos a_1, a_2, a_3, ..., a_k, e naturais u_1, u_2, u_3 ... u_w, univocamente determinados, tais que n = (a_1)^{u_1} . (a_2)^{u_2} . (a_3)^{u_3} .  ...  . (a_k)^{u_k}.
-
 
