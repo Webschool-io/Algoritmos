@@ -19,14 +19,18 @@ const isPrime = (numero) => {
   if(isInteger(numero/2)) {
     return false;
   }
-  for(let contador = 3; contador < numero; contador++) {
+  for(let contador = numero-1; contador <= numero; contador--) {
+    if(contador === 2) {
+      break;
+    }
+    console.log(numero+'/'+contador, numero/contador);
     if(!calculateRest(numero, contador)) {
       return false;
     }
   }
   return true;
 }
-const numero = 23;
+const numero = 25;
 const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
 

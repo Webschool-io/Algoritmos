@@ -58,9 +58,21 @@ Na programação podemos testar isso de 2 formas:
 
 Vamos iniciar nosso algoritmo
 
-## Testando o resultado se é inteiro
+## Testando se o resultado da divisão é inteiro
 
-Ainda bem que o JavaScript nos provê a função `Number.isInteger()` que irá fazer teste automaticamente:
+Nesse caso precisamos verificar se o resultado da divisão será um inteiro, pois se ele for nós encontramos um divisor.
+
+**Mas como assim?**
+
+Simples, divida `4` por `2`.
+
+O resultado é `2`, ou seja, um inteiro.
+
+Agora divida `4` por `3`.
+
+O resultado é `1.33333`, ou seja, não inteiro.
+
+Para facilitar nossa vida o JavaScript nos provê a função `Number.isInteger()` que irá fazer teste automaticamente:
 
 ```js
 let primo = false;
@@ -76,6 +88,8 @@ console.log('O resultado da divisão entre '+numero+' e '+divisor+' é inteiro?'
 ```
 
 Você pode executar esse código diretamente do seu navegador, entrando no Console (favor pesquisar como fazer em seu Navegador).
+
+Perceba que no `if` estou chamando a função `Number.isInteger` passando como parâmetro o resultado da divisão, essa mesma função irá retornar verdadeiro(`true`) caso o número seja inteiro ou falso(`false`) caso não.
 
 Para facilitar nossa vida futura irei encapsular essa lógica para poder sempre reusar, basta apenas criar uma função para tal:
 
@@ -123,9 +137,9 @@ const isInteger = (numero) => {
 // Definimos o estado atual
 let primo = false;
 const numero = 5;
-// Não preciso testar se é divisível por 1 nem 2
+// Não preciso testar se é divisível por 1
 for(let contador = 2; contador < numero; contador++) {
-  // Preciso testar se o número tem algum divisor entre ele e 1
+  // Preciso testar se o número tem algum divisor entre ele e 2
   // Se não achar nenhum divisor ele será PRIMO
   let resultado = numero/contador;
   if(isInteger(resultado) === false) {
@@ -172,7 +186,39 @@ Então você percebeu que aquele `contador++` é o tal do incrementador né?
 
 Ele simplesmente adiciona 1 ao valor do `contador` cada vez que passa.
 
-## Testando o resto da divisão se é 0
+Agora refatoramos o algoritmo para encapsular a lógica do número primo em uma função:
+
+```js
+const isInteger = (numero) => {
+  let inteiro = false;
+  if(Number.isInteger(numero)) {
+    inteiro = true;
+  }
+  console.log('O número '+numero+' é inteiro?', inteiro);
+  return inteiro;
+}
+
+const isPrime = (numero) => {
+  if(isInteger(numero/2)) {
+    return false;
+  }
+  for(let contador = 3; contador < numero; contador++) {
+    // Preciso testar se o número tem algum divisor entre ele e 1
+    // Se não achar nenhum divisor ele será PRIMO
+    let resultado = numero/contador;
+    if(isInteger(resultado)) {
+      return false;
+    }
+  }
+  return true;
+}
+const numero = 273;
+const primo = isPrime(numero);
+
+console.log('O número '+numero+' é primo?', primo);
+```
+
+## Testando o resto da divisão se é igual a0
 
 Podemos resolver o mesmo problema com uma abordagem diferente, em vez de testar o resultado da divisão iremos testar se o resto dessa divisão é igual a 0.
 
@@ -206,14 +252,14 @@ Como iremos trabalhar com o valor do **resto** da divisão precisamos inicialmen
 Para exemplificar melhor acompanhe aqui comigo:
 
 ```
-4 / 2 = 0
+4 / 2 = 2
 ```
 
-A divisão de 4 por 2 resulta em 0 e tem 0 como resto também, pois:
+A divisão de 4 por 2 resulta em 2 e tem 0 como resto, pois:
 
 ```
  4 |2
--2  2
+-4  2
  0
 ```
 
@@ -228,7 +274,7 @@ Vamos ver com um número ímpar:
   ... é uma dízima periódica
 ```
 
-Logo você percebe que se o número a ser dividido(4), o dividendo, pelo divisor(3) não encontrar um resultado inteiro você deverá adicionar uma casa decimal, fazendo isso você deve multiplicar o **resto** por 10 e continuar a divisão normalmente.
+Logo você percebe que se o número a ser dividido(4), o dividendo, pelo divisor(3) não encontrar um resultado inteiro você deverá adicionar uma casa decimal (colocando a vírgula), fazendo isso você deve multiplicar o **resto** por 10, pois adicionou a vírgula no resultado, e continuar a divisão normalmente.
 
 Ótimo então já sabemos dividir (hehehe) agora vamos criar um algoritmo para verificar o resto de uma divisão:
 
@@ -243,13 +289,13 @@ const calculateRest = (divisor, dividendo) => {
 }
 ```
 
-Porém como as linguagens de programação vieram para facilitar nossa vida nós não precisaremos utilizar a função acima para retornar o resto, utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**.
+Porém como as linguagens de programação vieram para facilitar nossa vida nós não precisaremos utilizar a função acima para retornar o resto, utilizaremos o [operador de módulo](https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_m%C3%B3dulo) ou também conhecido como **mod**, [no JavaScript usamos o operador %]().
 
 ```js
-const calculateRest = (divisor, dividendo) => {
-  const resultado = divisor/dividendo;
+const calculateRest = (dividendo, divisor) => {
+  const resultado = dividendo/divisor;
   console.log('resultado: ', resultado);
-  return (divisor - (dividendo * parseInt(resultado)));
+  return (dividendo - (divisor * parseInt(resultado)));
 }
 
 const isInteger = (numero) => {
@@ -272,17 +318,165 @@ const isPrime = (numero) => {
   }
   return true;
 }
-const numero = 12;
+const numero = 5;
 const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
 ```
 
-Dessa vez nós reusamos as funções passadas `isInteger` e criamos a função `calculateRest` que irá retornar o valor do resto da divisão para testarmos se o resto é diferente de 0, **pois se o resto for 0 o `numero` encontrou um divisor**.
+Dessa vez nós reusamos as funções passadas `isInteger` e `isPrime`, criando a função `calculateRest` que irá retornar o valor do resto da divisão para testarmos se ele é diferente de 0, **pois se o resto for 0 o `numero` encontrou um divisor**.
 
+Quero que você analise essa linha comigo:
 
+```js
+if(!calculateRest(numero, contador))
+```
 
+**Por que não estou testando se o resultado de `calculateRest(numero, contador)` é diferente de 0?**
 
+Pense aqui comigo, o retorno da função `calculateRest` será um inteiro, caso seja 0 significa que o número achou seu divisor, logo não é primo, por isso retornamos `false`:
 
+```js
+for(let contador = 3; contador < numero; contador++) {
+  if(!calculateRest(numero, contador)) {
+    return false;
+  }
+}
+```
 
+Então como o valor 0 que significa `false` entrou no `if` onde só pode entrar caso o valor seja `true`, no JavaScript também usamos o valor `0` para `false` e o valor `1` (ou maiores que 0) para `true`.
+
+**Agora que vem a malandragem da lógica!**
+
+Para o valor `0` entrar no if nós precisamos inverter seu valor já para Booleano(`true` ou `false`). Confira executando isso no seu console:
+
+```
+!0
+true
+!1
+false
+```
+
+E pronto!
+
+## Desafio
+
+**Agora o seu desafio é inverter a lógica!**
+
+Em vez de iniciar do 3 você deverá iniciar do valor passado a ser testado, ou seja, em vez de incrementar você irá decrementar.
+
+**E também deverá criar um algoritmo para retornar `true` ou `false` caso um número seja Inteiro, utilizando-o em vez da função parseInt().**
+
+## Dividindo por √¯n
+
+Caso não esteja familiarizado com o algoritmo da radiciação [leia mais nesse meu conteúdo](https://github.com/Webschool-io/matematica-para-programadores#radiciação-1), nele eu deduzi uma fórmula "simples" para números inteiros positivos:
+
+```
+√¯y = x
+
+y/x = x
+```
+
+Ela pode ser provada da seguinte forma:
+
+```
+√¯49 = x
+49 = x ^ 2
+49 = x . x
+49/x = x
+49/7 = 7
+```
+
+Nesse caso sabemos que qualquer número divido pela sua raíz quadrada será a própria raíz, ou seja, qualquer número pode ser escrito como a multiplicação de dois números.
+
+Sabendo disso podemos inferir que um número `x` pode ser escrito como uma multiplicação de 2 números inteiros e positivos menores que ele, sendo a multiplicação da sua raíz por ela mesma o maior valor.
+
+Agora podemos melhorar nosso algoritmo não precisando dividir por todos seus antecessores, bastando iniciar da raíz do número até 2.
+
+Veja o que mudaremos dentro da função `isPrime`:
+
+```js
+const isPrime = (numero) => {
+
+  if(isInteger(numero/2)) {
+    return false;
+  }
+
+  const raiz = Math.sqrt(numero);
+
+  if(raiz > 2) {
+    for(let contador = 3; contador < raiz; contador++) {
+      if(!calculateRest(numero, contador)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+```
+
+Logo após o teste pra verificar se é par em `if(isInteger(numero/2))` adicionei o cálculo da raíz quarada utilizando a função `Math.sqrt(numero)`.
+
+Para na sequência testar se a `raiz` é maior que `2` para garantir que não entrarei nesse `if` caso o `numero` seja menor que 4, que é par.
+
+Depois bastou modificar o teste de saída do `for` para `contador < raiz`, poupando-nos **muito processamento**.
+
+Apenas observe nosso algoritmo antes:
+
+```
+λ ➜  Números primos git:(master) ✗ node algol-testaPrimoResto
+O número 11.5 é inteiro? false
+resultado:  7.666666666666667
+resultado:  5.75
+resultado:  4.6
+resultado:  3.8333333333333335
+resultado:  3.2857142857142856
+resultado:  2.875
+resultado:  2.5555555555555554
+resultado:  2.3
+resultado:  2.090909090909091
+resultado:  1.9166666666666667
+resultado:  1.7692307692307692
+resultado:  1.6428571428571428
+resultado:  1.5333333333333334
+resultado:  1.4375
+resultado:  1.3529411764705883
+resultado:  1.2777777777777777
+resultado:  1.2105263157894737
+resultado:  1.15
+resultado:  1.0952380952380953
+resultado:  1.0454545454545454
+O número 23 é primo? true
+```
+
+E agora com o algoritmo otimizado:
+
+```
+λ ➜  Números primos git:(master) ✗ node algol-testaPrimoRestoRaiz.js
+O número 11.5 é inteiro? false
+resultado:  7.666666666666667
+resultado:  5.75
+O número 23 é primo? true
+
+```
+
+## Teoremas sobre números primos
+
+### Teorema 1 - Teorema Fundamental da Aritmética
+
+Todo número natural maior do que 1 ou é primo ou se escreve de modo único (exceptuando a ordem dos fatores) como um produto de números primos.
+
+Tomemos a segunda forma do Princípio de Indução.
+
+Seja n = 2, sabemos que ele é primo. Suponha o resultado válido para todo número natural menor que `n` e vamos provar que vale para n. Observe que que se `n` é primo, nada temos a provar. Sendo `n` composto, existem números naturais `x` e `y` tais que `n = xy` com `1 < x < n e 1 < y < n`.
+
+```
+x e y tais que n = xy com 1 < x < n e 1 < y < n.
+```
+
+Ou seja o número `n` é igual à multiplicação de `x` e `y`, sendo `x` e `y` maior que 1 e menor que `n`.
+
+### Teorema 2
+
+Dado um número natural n > 1, existem primos a_1, a_2, a_3, ..., a_k, e naturais u_1, u_2, u_3 ... u_w, univocamente determinados, tais que n = (a_1)^{u_1} . (a_2)^{u_2} . (a_3)^{u_3} .  ...  . (a_k)^{u_k}.
 
 

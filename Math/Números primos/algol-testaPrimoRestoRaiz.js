@@ -16,16 +16,22 @@ const isInteger = (numero) => {
 }
 
 const isPrime = (numero) => {
+
   if(isInteger(numero/2)) {
     return false;
   }
-  for(let contador = 3; contador < numero; contador++) {
-    if(!calculateRest(numero, contador)) {
-      return false;
+
+  const raiz = Math.sqrt(numero);
+  if(raiz > 2) {
+    for(let contador = 3; contador < raiz; contador++) {
+      if(!calculateRest(numero, contador)) {
+        return false;
+      }
     }
+    return true;
   }
-  return true;
 }
+
 const numero = 23;
 const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
