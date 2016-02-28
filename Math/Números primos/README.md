@@ -240,7 +240,7 @@ const primo = isPrime(numero);
 console.log('O número '+numero+' é primo?', primo);
 ```
 
-## Testando o resto da divisão se é igual a0
+## Testando o resto da divisão se é igual a 0
 
 Podemos resolver o mesmo problema com uma abordagem diferente, em vez de testar o resultado da divisão iremos testar se o resto dessa divisão é igual a 0.
 
