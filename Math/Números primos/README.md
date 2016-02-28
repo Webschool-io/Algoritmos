@@ -4,22 +4,44 @@
 
 A definição de um número primo é:
 
->  úmero primo, é um número p cujo conjunto dos divisores não inversíveis não é vazio, e todos os seus elementos são produtos de p por números inteiros inversíveis. De acordo com esta definição, 0, 1 e -1 não são números primos.
+>  Número primo, é um número p cujo conjunto dos divisores não inversíveis não é vazio, e todos os seus elementos são produtos de p por números inteiros inversíveis. De acordo com esta definição, 0, 1 e -1 não são números primos.
 
 fonte: [https://pt.wikipedia.org/wiki/N%C3%BAmero_primo](https://pt.wikipedia.org/wiki/N%C3%BAmero_primo)
 
 Mas o que isso significa?
 
-Basicamente que para um número inteiro ser primo é aquele que tem unicamente dois divisores naturais distintos: 
+Significa que para um número inteiro ser primo, ele só pode ser divisível:
 
-- o número 1;
-- ele mesmo.
+- por 1;
+- por ele mesmo.
 
-Sabendo disso ficou fácil iniciarmos o algoritmo, primeiramente escrevemos as regras explícitas, não precisamos testar se o número é divisível por 1, mas sim precisamos testar se o número **tem algum divisor entre ele e 1**.
+Sabendo disso o que você consegue deduzir sobre o número primo?
+
+![](https://media.giphy.com/media/FwmBBOop7p1mw/giphy.gif)
+
+**Se ele só é divisível por 1 e por ele mesmo, logo ele não tem nenhum outro divisor inteiro.**
+
+Vamos a um exemplo:
+
+```
+1 / 1 = 1
+2 / 1 = 2
+3 / 1 = 3
+4 / 1 = 4
+5 / 1 = 5
+6 / 1 = 6
+7 / 1 = 7
+```
+
+Já conseguiu entender o que teremos que testar para verificar se um número é inteiro???
+
+![](https://media.giphy.com/media/xf20D8HzvTQzu/giphy.gif)
+
+Primeiramente escrevemos as regras explícitas, não precisamos testar se o número é divisível por 1, mas precisamos testar se o número **tem algum divisor entre ele e 1**.
 
 Para fazer iremos utilizar a mesma lógica da função `multiplicar/dividir` do [Curso de Matemática para Programadores](https://github.com/Webschool-io/matematica-para-programadores).
 
-Nesse caso precisamos pegar o número e ir testando se ele divide pelos números anteriores a ele indo até 2, **caso ele não encontre nenhum número que seja seu divisor** então ele será primo.
+Sabemos então que não precisaos dividir por `1`, mas pecisamos dividir por `2` e esse este será o primeiro do nosso algritmo, pois tamb
 
 Para escrever isso como algoritmo eu preciso entender antes o conceito de *loop*.
 
